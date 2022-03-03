@@ -3,4 +3,6 @@
 
 # исключить из игнора файлики
 !main.py
+!guess_the_number_comp.py
+!guess_the_number_user.py
 !README.md

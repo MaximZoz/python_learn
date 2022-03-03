@@ -2,7 +2,9 @@ import random
 
 
 class Game:
-    count = 0
+    count = 1
+    minGuess = 1
+    maxGuess = 10
     number = random.randint(0, 10)  # случайное число от 1 до 10
 
     def __init__(self, maxCount):
@@ -12,9 +14,17 @@ class Game:
 
         self.maxCount = maxCount  # максимально ко-во попыток
 
-    def Start(self):
-        while self.count < self.maxCount:
-            guess = int(input('Введи число от 1 до 10: '))
+    def Start(self) -> None:
+        while True:
+            while True:  # валидируем введенное значение
+                try:
+                    guess = int(input('Введи число от 1 до 10: '))
+                    if guess > 10 or guess < 1:
+                        raise Exception
+                    break
+                except Exception:
+                    print('ошибка ввода, повторите попытку')
+
             self.count += 1  # увеличиваем счетчик числа попыток
             if guess < self.number and self.maxCount - self.count != 0:
                 print('число больше загаданного, осталось попыток:{0}'.format(self.maxCount - self.count))
